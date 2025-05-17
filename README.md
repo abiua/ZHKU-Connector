@@ -2,13 +2,7 @@
 
 这是一个用于自动登录仲恺农业工程学院校园网的工具，可以帮助用户自动检测网络状态并进行登录。
 
-⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
-
-原作者：Jin-Cheng-Ming
-
-主页链接：https://github.com/Jin-Cheng-Ming/ZHKU-Connector
-
-⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐⭐
+This project is a fork of ![ZHKU-Connector](https://github.com/Jin-Cheng-Ming/ZHKU-Connector) by @Jin-Cheng-Ming.
 
 ## 功能特点
 
