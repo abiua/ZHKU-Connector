@@ -1,0 +1,10 @@
+current_version: version_abiu
+last_update: 2025-05
+home_page: https://github.com/Abiu/ZHKU-Connector
+detect_captive_portal_url: http://www.gstatic.com/generate_204
+login_page: http://172.31.255.1/drcom/login?callback=dr1003&DDDDD={user_id}&upass={password}&0MKKey=123456&R1=0&R2=&R3=0&R6=0&para=00&v6ip=&terminal_type=1&lang=zh-cn&jsVersion=4.2&v=2579&lang=zh
+log_level: info
+printable: True
+internet_host_list:
+  - baidu.com
+  - douyin.com
