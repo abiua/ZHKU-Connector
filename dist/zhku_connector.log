@@ -76,3 +76,31 @@
 2025-05-17 16:15:31,372 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
 2025-05-17 16:15:36,433 - zhku_connector - DEBUG - 执行网络状态检测
 2025-05-17 16:15:36,434 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:15:36,677 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:15:41,735 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:15:41,735 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:15:41,919 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:15:46,985 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:15:46,985 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:15:47,163 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:15:52,207 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:15:52,208 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:15:52,396 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:15:57,442 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:15:57,442 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:15:57,634 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:16:02,672 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:16:02,673 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:16:02,817 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:16:07,854 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:16:07,854 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:16:08,004 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:16:13,041 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:16:13,041 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:16:13,233 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:16:18,266 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:16:18,267 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:16:18,453 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:16:23,488 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:16:23,489 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:16:23,699 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
