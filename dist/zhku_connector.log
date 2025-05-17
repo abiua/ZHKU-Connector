@@ -1,0 +1,78 @@
+2025-05-17 16:13:49,490 - zhku_connector - DEBUG - 尝试从 config.yml 读取配置
+2025-05-17 16:13:49,500 - zhku_connector - DEBUG - 配置文件读取成功
+2025-05-17 16:13:49,500 - zhku_connector - INFO - 启动ZHKU校园网连接器
+2025-05-17 16:13:49,500 - zhku_connector - DEBUG - 当前版本: version_abiu
+2025-05-17 16:13:49,500 - zhku_connector - DEBUG - 项目主页: https://github.com/Abiu/ZHKU-Connector, 最后更新: 2025-05
+2025-05-17 16:13:49,500 - zhku_connector - DEBUG - 检测网络连接状态
+2025-05-17 16:13:49,680 - zhku_connector - DEBUG - 尝试获取已保存的登录信息
+2025-05-17 16:13:49,680 - zhku_connector - DEBUG - 尝试从 C:\Users\74276\network_credentials.pkl 读取登录信息
+2025-05-17 16:13:49,680 - zhku_connector - DEBUG - 登录信息读取成功
+2025-05-17 16:13:49,680 - zhku_connector - INFO - 找到已保存的登录信息: 用户 [2112407005]
+2025-05-17 16:13:54,922 - zhku_connector - INFO - 使用已保存的登录信息
+2025-05-17 16:13:54,922 - zhku_connector - INFO - 账号登录正常
+2025-05-17 16:13:54,922 - zhku_connector - DEBUG - 询问用户是否保存登录信息
+2025-05-17 16:13:54,922 - zhku_connector - INFO - 询问用户是否保存登录信息
+2025-05-17 16:13:56,612 - zhku_connector - DEBUG - 用户选择保存登录信息: 2112407005
+2025-05-17 16:13:56,612 - zhku_connector - DEBUG - 尝试保存登录信息到 C:\Users\74276\network_credentials.pkl
+2025-05-17 16:13:56,622 - zhku_connector - DEBUG - 登录信息保存成功
+2025-05-17 16:13:56,622 - zhku_connector - INFO - 登录信息已成功保存
+2025-05-17 16:13:56,622 - zhku_connector - INFO - 启动自动登录监测服务
+2025-05-17 16:13:56,622 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:13:56,622 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:13:56,742 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:14:01,762 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:14:01,762 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:14:01,888 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:14:06,935 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:14:06,935 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:14:07,065 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:14:12,128 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:14:12,130 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:14:12,264 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:14:17,312 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:14:17,312 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:14:17,703 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:14:22,818 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:14:22,820 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:14:23,340 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:14:28,399 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:14:28,400 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:14:28,556 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:14:33,605 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:14:33,606 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:14:33,797 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:14:38,834 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:14:38,834 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:14:39,026 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:14:44,059 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:14:44,059 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:14:44,200 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:14:49,249 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:14:49,249 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:14:49,453 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:14:54,494 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:14:54,494 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:14:54,678 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:14:59,712 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:14:59,712 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:14:59,881 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:15:04,905 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:15:04,905 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:15:05,094 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:15:10,128 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:15:10,128 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:15:10,369 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:15:15,400 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:15:15,400 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:15:15,653 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:15:20,692 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:15:20,692 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:15:20,846 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:15:25,888 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:15:25,888 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:15:26,087 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:15:31,125 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:15:31,125 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
+2025-05-17 16:15:31,372 - zhku_connector - DEBUG - 网络连接正常，状态码: 204
+2025-05-17 16:15:36,433 - zhku_connector - DEBUG - 执行网络状态检测
+2025-05-17 16:15:36,434 - zhku_connector - DEBUG - 尝试访问检测URL: http://www.gstatic.com/generate_204
