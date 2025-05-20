@@ -9,7 +9,7 @@ This project is a fork of [ZHKU-Connector](https://github.com/Jin-Cheng-Ming/ZHK
 2. 确保已安装Python 3.6+
 3. 自己创建.exe的快捷方式放到桌面运行
    
-** 首次使用要自己先使用1.1.1.1看一下ip是什么，然后在config里面改 **
+**首次使用要自己先使用1.1.1.1看一下ip是什么，然后在config里面改**
 
 ## BUG
 
