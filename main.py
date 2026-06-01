@@ -11,7 +11,11 @@ import logging  # 用于日志记录
 import logging.handlers  # 用于日志处理器
 import sys  # 用于获取系统信息
 import traceback  # 用于异常追踪
-import msvcrt  # 用于Windows系统下的非阻塞式输入检测
+import platform
+if platform.system() == 'Windows':
+    import msvcrt  # 用于Windows系统下的非阻塞式输入检测
+else:
+    msvcrt = None
 from termcolor import colored
 # 配置文件和凭据文件路径
 config_file_path = 'config.yml'
@@ -342,7 +346,8 @@ class Connector:
             logger.error(f'{error_msg}: {e}')
             logger.debug(f'异常详情: {traceback.format_exc()}')
             print(error_msg)
-            os.system("pause")
+            if platform.system() == 'Windows':
+                os.system("pause")
             return
             
         # 获取本地记录，如果有则在等待一定时间过后自动使用
@@ -358,16 +363,20 @@ class Connector:
             use_saved_config = True
             for i in range(5, 0, -1):
                 print(f'\r自动使用配置倒计时: {i}秒...', end='', flush=True)
-                # 使用msvcrt模块检测输入，Windows系统专用
-                start_time = time.time()
-                while time.time() - start_time < 1:  # 每秒检查多次键盘输入
-                    if msvcrt.kbhit():  # 检查是否有键盘输入
-                        key = msvcrt.getch()  # 获取按下的键
-                        if key == b'\r' or key == b'\n':  # 检查是否为回车键
-                            use_saved_config = False
-                            print('\n用户取消了自动登录')
-                            break
-                    time.sleep(0.1)  # 短暂休眠，减少CPU使用
+                # 检测用户输入（仅Windows支持非阻塞式键盘检测）
+                if msvcrt is not None:
+                    start_time = time.time()
+                    while time.time() - start_time < 1:  # 每秒检查多次键盘输入
+                        if msvcrt.kbhit():  # 检查是否有键盘输入
+                            key = msvcrt.getch()  # 获取按下的键
+                            if key == b'\r' or key == b'\n':  # 检查是否为回车键
+                                use_saved_config = False
+                                print('\n用户取消了自动登录')
+                                break
+                        time.sleep(0.1)  # 短暂休眠，减少CPU使用
+                else:
+                    # macOS/Linux: fallback to simple sleep (no keyboard interrupt detection)
+                    time.sleep(1)
                 
                 if not use_saved_config:  # 如果用户取消了，跳出倒计时循环
                     break
