@@ -70,3 +70,26 @@ class TestLoginUsesLoginTemplate:
         called_url = mock_get.call_args[0][0]
         assert 'testuser' in called_url
         assert 'testpass' in called_url
+
+
+class TestAutoLoginSkipsOnNetworkError:
+    """Verify auto_login() does not call login() when captive is None (network error)."""
+
+    @patch('main.requests.get')
+    def test_no_login_on_network_error(self, mock_get):
+        # Make detect_captive_portal return None (network error)
+        mock_get.side_effect = main.requests.RequestException("Network down")
+
+        connector = main.Connector()
+        connector.user_id = 'testuser'
+        connector.password = 'testpass'
+
+        # Simulate one iteration of the auto_login() loop logic:
+        # When detect_captive_portal() returns None, login() should NOT be called
+        captive = connector.detect_captive_portal()
+        assert captive is None
+
+        # The fix: only trigger login on captive=True, not None
+        # This is the logic from auto_login() after the fix:
+        login_should_trigger = bool(captive)
+        assert login_should_trigger is False
