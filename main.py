@@ -152,12 +152,12 @@ class Connector:
             # 设置默认值
             self.printable = True
             self.detect_captive_portal_url = "http://www.gstatic.com/generate_204"
-            self.captive_portal = "http://172.31.255.1/drcom/login?callback=dr1003&DDDDD={user_id}&upass={password}&0MKKey=123456&R1=0&R2=&R3=0&R6=0&para=00&v6ip=&terminal_type=1&lang=zh-cn&jsVersion=4.2&v=2579&lang=zh"
+            self.login_template = "http://172.31.255.1/drcom/login?callback=dr1003&DDDDD={user_id}&upass={password}&0MKKey=123456&R1=0&R2=&R3=0&R6=0&para=00&v6ip=&terminal_type=1&lang=zh-cn&jsVersion=4.2&v=2579&lang=zh"
         else:
             # 使用配置文件中的值
             self.printable = Connector.config.get('printable', True)
             self.detect_captive_portal_url = Connector.config.get('detect_captive_portal_url', "http://www.gstatic.com/generate_204")
-            self.captive_portal = Connector.config.get('login_page', "http://172.31.255.1/drcom/login?callback=dr1003&DDDDD={user_id}&upass={password}&0MKKey=123456&R1=0&R2=&R3=0&R6=0&para=00&v6ip=&terminal_type=1&lang=zh-cn&jsVersion=4.2&v=2579&lang=zh")
+            self.login_template = Connector.config.get('login_page', "http://172.31.255.1/drcom/login?callback=dr1003&DDDDD={user_id}&upass={password}&0MKKey=123456&R1=0&R2=&R3=0&R6=0&para=00&v6ip=&terminal_type=1&lang=zh-cn&jsVersion=4.2&v=2579&lang=zh")
         
         self.agent = 'pc'
         self.is_auto_login = True
@@ -224,8 +224,8 @@ class Connector:
                 return False
             elif response.is_redirect:
                 # 检测到重定向，可能是Captive Portal
-                self.captive_portal = response.headers.get('Location')
-                logger.info(f"检测到重定向，可能存在Captive Portal: {self.captive_portal}")
+                self.detected_redirect = response.headers.get('Location')
+                logger.info(f"检测到重定向，可能存在Captive Portal: {self.detected_redirect}")
                 return True
             else:
                 # 其他未知情况
@@ -259,7 +259,7 @@ class Connector:
         logger.info(f'用户 [{self.user_id}] 正在登录中……')
         
         # 构建包含账号密码的完整URL
-        login_url = self.captive_portal.format(user_id=self.user_id, password=self.password)
+        login_url = self.login_template.format(user_id=self.user_id, password=self.password)
         logger.debug(f'构建登录URL: {login_url.replace(self.password, "******")}')  # 隐藏密码
         
         try:
@@ -291,7 +291,7 @@ class Connector:
         if is_remember_login:
             logger.debug(f'用户选择保存登录信息: {self.user_id}')
             login_info = {
-                'hostname': self.captive_portal,
+                'hostname': self.login_template,
                 'user_id': self.user_id,
                 'password': self.password
             }
@@ -315,9 +315,9 @@ class Connector:
             # 互联网连接异常
             logger.debug('执行网络状态检测')
             captive = self.detect_captive_portal()
-            if captive or captive is None:
+            if captive:
                 spinner = Spinner('\r')
-                logger.warning('检测到网络异常，需要重新登录')
+                logger.warning('检测到强制门户，需要重新登录')
                 print('强制主页，登录以继续，将执行自动登录')
                 # 执行登录校园网方法 获取登录状态
                 login_status = self.login()
