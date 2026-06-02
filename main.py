@@ -256,16 +256,16 @@ class Connector:
                 logger.debug(f"尝试访问备用主机: {host_url}")
                 response = requests.get(host_url, allow_redirects=False, timeout=5)
                 # 任何成功响应都说明网络可达
-                logger.info(f"备用主机 [{host}] 响应成功，状态码: {response.status_code}，"
-                          f"判定为Captive Portal状态，需要重新登录")
+                logger.info(f"备用主机 [{host}] 可达，状态码: {response.status_code}，"
+                          f"判定为网络受限（Captive Portal）状态，需要重新登录")
                 return True
             except requests.RequestException as e:
                 logger.warning(f"备用主机 [{host}] 访问失败: {e}")
                 continue
 
         # 所有备用主机都无法访问，网络完全断开
-        logger.error(f"所有检测目标均无法访问（主URL: {self.detect_captive_portal_url}, "
-                    f"备用主机: {self.internet_host_list}），网络已断开")
+        logger.error(f"所有检测目标均无法访问（共 {1 + len(self.internet_host_list)} 个），"
+                    f"网络已断开")
         return None
 
     def account_input(self):
