@@ -373,7 +373,7 @@ class Connector:
                 if consecutive_failures == 1:
                     print(colored('网络连接已断开，等待恢复...', 'red'))
                 # 如果连续失败多次，仍然尝试重新登录（网络可能已恢复但检测URL仍不可达）
-                if consecutive_failures >= 3:
+                if consecutive_failures >= 3 and consecutive_failures % 6 == 3:
                     logger.info(f'连续 {consecutive_failures} 次检测失败，尝试主动重新登录')
                     print(colored('尝试重新登录校园网...', 'yellow'))
                     login_status = self.login()
@@ -383,6 +383,7 @@ class Connector:
                         consecutive_failures = 0
                     else:
                         logger.error('重新登录失败，继续等待网络恢复')
+                        print(colored('重新登录失败，继续等待网络恢复', 'red'))
 
             else:
                 # captive is False — 网络正常
