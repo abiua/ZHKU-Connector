@@ -215,30 +215,58 @@ class Connector:
 
     def detect_captive_portal(self):
         """
-        尝试访问一个不会返回实际内容的URL，如果网络正常，应该返回204 No Content。
-        如果返回其他状态码或者重定向，可能意味着存在Captive Portal。
+        尝试访问Captive Portal检测URL。
+        如果网络正常，应该返回204 No Content。
+        如果返回重定向或其他状态码，可能意味着存在Captive Portal。
+        如果主检测URL不可达，回退到 internet_host_list 中的主机进行连通性检查。
+
+        :return: False - 网络正常; True - 需要登录; None - 网络断开
         """
+        # 第一步：尝试主检测URL (gstatic generate_204)
         try:
             logger.debug(f"尝试访问检测URL: {self.detect_captive_portal_url}")
-            response = requests.get(self.detect_captive_portal_url, allow_redirects=False)
+            response = requests.get(
+                self.detect_captive_portal_url,
+                allow_redirects=False,
+                timeout=5
+            )
 
             if response.status_code == 204:
-                # 正常情况，没有Captive Portal
                 logger.debug("网络连接正常，状态码: 204")
                 return False
             elif response.is_redirect:
-                # 检测到重定向，可能是Captive Portal
                 self.detected_redirect = response.headers.get('Location')
                 logger.info(f"检测到重定向，可能存在Captive Portal: {self.detected_redirect}")
                 return True
             else:
-                # 其他未知情况
-                logger.warning(f"未知网络状态，状态码: {response.status_code}")
-                return None
+                logger.warning(f"主检测URL返回非预期状态码: {response.status_code}，"
+                             f"将尝试备用主机检测")
         except requests.RequestException as e:
-            # 网络错误或其他异常
-            logger.error(f"网络请求错误: {e}")
+            logger.warning(f"主检测URL访问失败: {e}，将尝试备用主机检测")
+
+        # 第二步：回退到备用主机列表进行连通性检测
+        if not self.internet_host_list:
+            logger.error("未配置备用检测主机，无法判断网络状态")
             return None
+
+        logger.info(f"开始使用备用主机列表检测网络连通性: {self.internet_host_list}")
+        for host in self.internet_host_list:
+            try:
+                host_url = f"http://{host}"
+                logger.debug(f"尝试访问备用主机: {host_url}")
+                response = requests.get(host_url, allow_redirects=False, timeout=5)
+                # 任何成功响应都说明网络可达
+                logger.info(f"备用主机 [{host}] 响应成功，状态码: {response.status_code}，"
+                          f"判定为Captive Portal状态，需要重新登录")
+                return True
+            except requests.RequestException as e:
+                logger.warning(f"备用主机 [{host}] 访问失败: {e}")
+                continue
+
+        # 所有备用主机都无法访问，网络完全断开
+        logger.error(f"所有检测目标均无法访问（主URL: {self.detect_captive_portal_url}, "
+                    f"备用主机: {self.internet_host_list}），网络已断开")
+        return None
 
     def account_input(self):
         """ 设置登录相关信息
