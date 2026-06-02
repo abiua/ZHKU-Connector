@@ -343,23 +343,55 @@ class Connector:
     def auto_login(self):
         logger.info('启动自动登录监测服务')
         spinner = Spinner('网络已连通 ')
+        consecutive_failures = 0  # 连续失败计数器
         while True:
-            # 互联网连接异常
             logger.debug('执行网络状态检测')
             captive = self.detect_captive_portal()
-            if captive:
+
+            if captive is True:
+                # 检测到强制门户，需要重新登录
+                consecutive_failures = 0
                 spinner = Spinner('\r')
-                logger.warning('检测到强制门户，需要重新登录')
-                print('强制主页，登录以继续，将执行自动登录')
-                # 执行登录校园网方法 获取登录状态
+                logger.warning('检测到强制门户（Captive Portal），校园网已断开，准备执行自动登录')
+                print(colored('校园网已断开，检测到强制门户，正在执行自动登录...', 'yellow'))
                 login_status = self.login()
                 if login_status is True:
-                    logger.info('自动登录成功')
-                    print('自动登录成功')
+                    logger.info('自动登录成功，网络已恢复')
+                    print(colored('自动登录成功，网络已恢复', 'green'))
+                    consecutive_failures = 0
                 else:
-                    logger.error('自动登录失败')
-                    print('自动登录失败')
+                    logger.error('自动登录失败，将在下一轮检测后重试')
+                    print(colored('自动登录失败，等待下一轮检测...', 'red'))
+                    consecutive_failures += 1
                 spinner = Spinner('网络已连通 ')
+
+            elif captive is None:
+                # 网络完全断开或所有检测目标不可达
+                consecutive_failures += 1
+                logger.warning(f'网络连接已断开（连续失败 {consecutive_failures} 次），'
+                             f'所有检测目标均无法访问，等待网络恢复...')
+                if consecutive_failures == 1:
+                    print(colored('网络连接已断开，等待恢复...', 'red'))
+                # 如果连续失败多次，仍然尝试重新登录（网络可能已恢复但检测URL仍不可达）
+                if consecutive_failures >= 3:
+                    logger.info(f'连续 {consecutive_failures} 次检测失败，尝试主动重新登录')
+                    print(colored('尝试重新登录校园网...', 'yellow'))
+                    login_status = self.login()
+                    if login_status is True:
+                        logger.info('重新登录成功，网络已恢复')
+                        print(colored('重新登录成功，网络已恢复', 'green'))
+                        consecutive_failures = 0
+                    else:
+                        logger.error('重新登录失败，继续等待网络恢复')
+
+            else:
+                # captive is False — 网络正常
+                if consecutive_failures > 0:
+                    logger.info(f'网络已恢复（之前连续失败 {consecutive_failures} 次）')
+                    print(colored('网络连接已恢复', 'green'))
+                consecutive_failures = 0
+                logger.debug('网络连接正常')
+
             # 间隔5秒执行监测
             for i in range(5):
                 spinner.next()
