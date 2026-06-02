@@ -154,12 +154,14 @@ class Connector:
             self.detect_captive_portal_url = "http://www.gstatic.com/generate_204"
             self.login_template = "http://172.31.255.1/drcom/login?callback=dr1003&DDDDD={user_id}&upass={password}&0MKKey=123456&R1=0&R2=&R3=0&R6=0&para=00&v6ip=&terminal_type=1&lang=zh-cn&jsVersion=4.2&v=2579&lang=zh"
             self.detected_redirect = None
+            self.internet_host_list = ["baidu.com", "douyin.com"]
         else:
             # 使用配置文件中的值
             self.printable = Connector.config.get('printable', True)
             self.detect_captive_portal_url = Connector.config.get('detect_captive_portal_url', "http://www.gstatic.com/generate_204")
             self.login_template = Connector.config.get('login_page', "http://172.31.255.1/drcom/login?callback=dr1003&DDDDD={user_id}&upass={password}&0MKKey=123456&R1=0&R2=&R3=0&R6=0&para=00&v6ip=&terminal_type=1&lang=zh-cn&jsVersion=4.2&v=2579&lang=zh")
             self.detected_redirect = None
+            self.internet_host_list = Connector.config.get('internet_host_list', ["baidu.com", "douyin.com"])
         
         self.agent = 'pc'
         self.is_auto_login = True
