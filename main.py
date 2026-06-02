@@ -350,7 +350,6 @@ class Connector:
 
             if captive is True:
                 # 检测到强制门户，需要重新登录
-                consecutive_failures = 0
                 spinner = Spinner('\r')
                 logger.warning('检测到强制门户（Captive Portal），校园网已断开，准备执行自动登录')
                 print(colored('校园网已断开，检测到强制门户，正在执行自动登录...', 'yellow'))
@@ -358,11 +357,9 @@ class Connector:
                 if login_status is True:
                     logger.info('自动登录成功，网络已恢复')
                     print(colored('自动登录成功，网络已恢复', 'green'))
-                    consecutive_failures = 0
                 else:
                     logger.error('自动登录失败，将在下一轮检测后重试')
                     print(colored('自动登录失败，等待下一轮检测...', 'red'))
-                    consecutive_failures += 1
                 spinner = Spinner('网络已连通 ')
 
             elif captive is None:
